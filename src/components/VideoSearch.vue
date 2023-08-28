@@ -61,7 +61,7 @@
 
     // 搜尋
     const search = function () {
-        console.log(ytplayer.value.src)
+        store.commentOri = []
         const url = videourl.value
         let urlID
         let youtuUrl = false

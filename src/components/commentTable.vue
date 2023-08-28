@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <!-- <div>
         <el-input v-model="search" @change="doSearch" placeholder="請輸入" />
-    </div>
+    </div> -->
     <el-table :data="comment" style="width: 100%">
         <el-table-column type="index" label="序號" width="75">
             <template #default="scope">
@@ -51,18 +51,6 @@
     const comment = computed(() => {
         return store.comment.slice((currentPage.value - 1) * pageSize.value, currentPage.value * pageSize.value)
     })
-
-    // filter
-    const search = ref('')
-    const doSearch = function() {
-        if (search.value === '') {
-            store.comment = store.commentOri
-        } else {
-            store.comment = store.commentOri.filter(function(item, index, array){
-                return item.textDisplay.includes(search.value);
-            });
-        }
-    }
 </script>
 
 <style lang="scss" scoped>

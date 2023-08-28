@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import './style.css'
+import './assets/scss/common.scss';
 import ElementPlus from 'element-plus'
 import zhTW from 'element-plus/dist/locale/zh-tw.mjs'
 import 'element-plus/dist/index.css'
