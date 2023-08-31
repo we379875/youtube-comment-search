@@ -59,7 +59,6 @@
             </li>
         </ul>
     </el-card>
-    <el-button @click="getLottery" v-if="store.lottery.length > 0" type="danger">開始抽選</el-button>
 </template>
 
 <script setup>
@@ -125,50 +124,6 @@
     }
     const editLottery = function (tag, index) {
         tag.edit = !tag.edit
-    }
-
-    // 抽獎
-    const getRandom = function(x) {
-        return Math.floor(Math.random()*x);
-    }
-
-    const getLotteryNum = function(x, num) {
-        const arr = []
-        let n = 0
-        //一注威力彩號碼有6個所以我們讓迴圈跑六次
-        for (let i = 0; i < num; i++){
-            //用indexOf判斷該數字之前有沒有出現過
-            n = getRandom(x);
-            if (arr.length < x) {
-                if(arr.includes(n)){
-                    //如果有出現過就重跑一次迴圈
-                    i -= 1;
-                    continue;
-                } else{
-                    //沒出現過的話就寫進字串裡
-                    arr.push(n)
-                };
-            }
-        };
-        return arr
-    }
-
-    const getLottery = function() {
-        let x = 0
-        store.lottery.forEach((item, index) => {
-            x += item.num
-        })
-        const lotteryNum = getLotteryNum(store.comment.length, x)
-        let i = 0
-        let lastNum = 0
-        console.log(lotteryNum)
-        store.lottery.forEach((item, index) => {
-            item.winner = []
-            for(i; i < lastNum + item.num && i < lotteryNum.length; i++) {
-                item.winner.push(store.comment[lotteryNum[i]])
-            }
-            lastNum += item.num
-        })
     }
 </script>
 
