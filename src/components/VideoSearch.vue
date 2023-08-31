@@ -27,7 +27,6 @@
 
 
     function getCommentApi(urlID, pageToken = '') {
-        console.log(totalComment)
         const baseUrl = 'https://youtube.googleapis.com/youtube/v3/commentThreads';
         const params = new URLSearchParams({
             part: 'snippet,replies',
@@ -62,15 +61,18 @@
     // 搜尋
     const search = function () {
         store.commentOri = []
-        const url = videourl.value
+        // const url = videourl.value
+        const url = new URL(videourl.value);
+
+        const params = new URLSearchParams(url.search)
         let urlID
         let youtuUrl = false
         // 判斷YT影片2種網址格式
-        if (url.includes('youtube')) {
-            urlID = url.split('v=')[1]
+        if (url.hostname === 'www.youtube.com') {
+            urlID = params.get('v')
             youtuUrl = true
-        } else if (url.includes('youtu')) {
-            urlID = url.split('youtu.be/')[1]
+        } else if (url.hostname === 'youtu.be') {
+            urlID = url.pathname.substr(1)
             youtuUrl = true
         } else {
             alert('網址錯誤')
