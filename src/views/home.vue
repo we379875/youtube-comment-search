@@ -9,7 +9,10 @@
     </div>
     <div v-if="store.doSearch" style="margin-top: 1rem">
         <commentFilter/>
-        <el-button @click="getLottery" v-if="store.lottery.length > 0" type="danger">開始抽選</el-button>
+        <div v-if="store.lottery.length > 0">
+            <el-button @click="getLottery" v-if="!store.lotteryDone" type="danger">開始抽選</el-button>
+            <el-button @click="reLottery" v-else type="success">重新抽選</el-button>
+        </div>
         <el-tabs v-model="activeName">
             <el-tab-pane label="留言列表" name="first">
                 <commentTable/>
@@ -79,6 +82,11 @@
         })
 
         activeName.value = 'second'
+        store.lotteryDone = true
+    }
+
+    const reLottery = function () {
+        store.lotteryDone = false
     }
 </script>
 

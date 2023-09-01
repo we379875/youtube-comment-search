@@ -3,12 +3,11 @@
         <el-input v-model="videourl" placeholder="請輸入影片網址" />
         <el-button @click="search" type="primary">搜尋</el-button>
     </div>
-    <div style="margin-top: 1rem;">
+    <div class="flex-center-center" style="margin-top: 1rem; align-items: flex-start;">
         <iframe id="ytplayer" ref="ytplayer" type="text/html" width="640" height="360"
         src="https://www.youtube.com/embed/M7lc1UVf-VE?origin=http://example.com"
         frameborder="0"></iframe>
     </div>
-    
 </template>
 
 <script setup>

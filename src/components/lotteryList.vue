@@ -1,6 +1,6 @@
 <template>
-    <div v-for="(item, index) in store.lottery" :key="index">
-        {{ item.item }} {{ item.num }}位
+    <div v-for="(item, index) in store.lottery" :key="index" style="margin-bottom: 1rem">
+        <h2>{{ item.item }} {{ item.num }}位</h2>
         <el-table :data="item.winner" style="width: 100%">
             <el-table-column type="index" label="序號" width="75">
                 <template #default="scope">

@@ -2,15 +2,15 @@
     <el-card>
         <h3>篩選區塊</h3>
         <el-row>
-            <el-col :span="6" class="flex-center-center">
+            <el-col :span="12" class="flex-left-center">
                 <div style="white-space:nowrap">留言包含：</div>
                 <el-input  v-model="commentSearch" @change="doSearch" placeholder="請輸入" style="width: 80%" />
             </el-col>
-            <el-col :span="6" class="flex-center-center">
+            <el-col :span="12" class="flex-left-center">
                 <div style="white-space:nowrap">留言者：</div>
                 <el-input  v-model="nameSearch" @change="doSearch" placeholder="請輸入" style="width: 80%" />
             </el-col>
-            <el-col :span="12" class="flex-center-center">
+            <el-col :span="12" class="flex-left-center" style="margin-top: .5rem">
                 <div style="white-space:nowrap">時間區間：</div>
                 <el-date-picker
                     v-model="daterange"
@@ -35,7 +35,7 @@
                 <div style="white-space:nowrap">抽取人數</div>
                 <el-input-number v-model="lotteryNum" :min="1" />
             </el-col>
-            <el-button @click="addLottery" type="primary">新增</el-button>
+            <el-button v-if="!store.lotteryDone" @click="addLottery" type="primary">新增</el-button>
         </el-row>
 
         <ul>
@@ -44,18 +44,20 @@
                 :key="index"
                 style="text-align: left;"
             >
-                <div style="display: flex; align-items: center">
-                    <div v-if="!tag.edit">
+                <el-row style="display: flex; align-items: center; margin-top: .5rem">
+                    <el-col :span="18" v-if="!tag.edit">
                         {{ tag.item }} {{ tag.num }}位
-                    </div>
-                    <div v-else>
-                        <el-input v-model="tag.item" placeholder="請輸入" style="width: 30%" />
+                    </el-col>
+                    <el-col :span="18" v-else>
+                        <el-input v-model="tag.item" placeholder="請輸入" style="width: 30%; margin-right: .5rem" />
                         <el-input-number v-model="tag.num" :min="1" />位
-                    </div>
-                    <el-button v-if="!tag.edit" @click="editLottery(tag, index)" type="success">編輯</el-button>
-                    <el-button v-else @click="editLottery(tag, index)" type="primary">完成</el-button>
-                    <el-button @click="removeLottery(tag, index)" type="danger">刪除</el-button>
-                </div>
+                    </el-col>
+                    <el-col :span="6" v-if="!store.lotteryDone">
+                        <el-button v-if="!tag.edit" @click="editLottery(tag, index)" type="success">編輯</el-button>
+                        <el-button v-else @click="editLottery(tag, index)" type="primary">完成</el-button>
+                        <el-button @click="removeLottery(tag, index)" type="danger">刪除</el-button>
+                    </el-col>
+                </el-row>
             </li>
         </ul>
     </el-card>

@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 export const useCommentStore = defineStore('comment', {
     state: () => ({
         doSearch: false,
+        lotteryDone: false,
         commentOri: [],
         comment: [],
         lottery: [],
