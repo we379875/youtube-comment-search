@@ -1,4 +1,5 @@
 # 網站
+https://we379875.github.io/youtube-comment-search
 
-[This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-](https://we379875.github.io/youtube-comment-search/#/)
+使用vue3開發，並搭配pinia，
+使用youtube data api取得影片的相關資料，並將資料存到pinia，並篩選資料完成youtube留言抽獎網站
